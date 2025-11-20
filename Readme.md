@@ -140,6 +140,22 @@ Tests para:
 
 
 
+## ▶️ Correr tests localmente
+
+Con el entorno virtual activado:
+```shell
+  pytest -q
+```
+
+## 🐳 Correr tests dentro de Docker
+
+Ejecutar toda la suite:
+```shell
+  docker compose run --rm api pytest -q
+```
+
+
+
 ## 🧭 Curl rápido
 curl http://localhost:8000/health
 
