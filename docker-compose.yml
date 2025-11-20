@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: siembro_user_notes_db
+    environment:
+      POSTGRES_DB: siembro_user_notes
+      POSTGRES_USER: siembro
+      POSTGRES_PASSWORD: siembro
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: siembro_user_notes_api
+    depends_on:
+      - db
+    environment:
+      # DB (importante: el host es 'db' porque es el nombre del servicio)
+      DATABASE_URL: postgresql+psycopg://siembro:siembro@db:5432/siembro_user_notes
+
+      AUTH0_DOMAIN: dev-fxabduas3g72jw4m.us.auth0.com
+      AUTH0_AUDIENCE: siembro-dev.com
+      AUTH0_ALGORITHMS: RS256
+
+      DEBUG: "true"
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    command: >
+      bash -c "python -m app.db.init_db && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+
+volumes:
+  db_data:

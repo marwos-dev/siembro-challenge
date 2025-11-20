@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: siembro-user-notes
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: siembro-user-notes
+  template:
+    metadata:
+      labels:
+        app: siembro-user-notes
+    spec:
+      containers:
+        - name: api
+          image: gcr.io/siembro/siembro-user-notes:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: siembro-user-notes-config
+            - secretRef:
+                name: siembro-user-notes-secret
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10

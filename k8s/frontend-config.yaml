@@ -1,0 +1,9 @@
+apiVersion: networking.gke.io/v1beta1
+kind: FrontendConfig
+metadata:
+  name: siembro-frontend-config
+spec:
+  cdn:
+    enabled: true
+  redirectToHttps:
+    enabled: true
