@@ -25,7 +25,11 @@ engine = create_engine(
     TEST_DATABASE_URL,
     connect_args={"check_same_thread": False},
 )
-TestingSessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+TestingSessionLocal = sessionmaker(
+    bind=engine,
+    autocommit=False,
+    autoflush=False
+)
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -102,5 +106,6 @@ def client(mock_user):
     Cliente de test con el usuario autenticado mockeado.
     """
     # override de la dependencia real get_current_user
-    app.dependency_overrides[get_current_user] = override_get_current_user_fn(mock_user)
+    app.dependency_overrides[get_current_user] =\
+        override_get_current_user_fn(mock_user)
     return TestClient(app)

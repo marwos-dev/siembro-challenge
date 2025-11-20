@@ -1,6 +1,4 @@
-from app.db.session import engine, Base
-from .models.user import User  # importa para que SQLAlchemy registre el modelo
-from .models.note import Note  # idem
+from app.db.session import Base, engine
 
 
 def init_db() -> None:

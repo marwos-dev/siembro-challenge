@@ -1,5 +1,6 @@
 from datetime import datetime
-from pydantic import BaseModel, model_validator
+
+from pydantic import BaseModel
 
 
 class UserMetadata(BaseModel):
@@ -13,5 +14,3 @@ class MeOut(BaseModel):
     email: str | None = None
     name: str | None = None
     metadata: dict
-
-

@@ -14,7 +14,6 @@ class Auth0Error(Exception):
     ...
 
 
-
 @lru_cache(maxsize=1)
 def get_jwks() -> Dict[str, Any]:
     """

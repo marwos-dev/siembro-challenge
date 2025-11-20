@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from app.auth.dependencies import CurrentUser, get_current_user
 from app.db.models.note import Note
 from app.db.session import get_db
-from app.schemas.note import NoteOut, NoteCreate
+from app.schemas.note import NoteCreate, NoteOut
 
 note_router = APIRouter()
 
@@ -36,4 +36,3 @@ async def create_note(
     db.commit()
     db.refresh(note)
     return note
-

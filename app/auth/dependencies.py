@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from random import randint
 from typing import Annotated, Any, Dict
 
 from fastapi import Depends, HTTPException, status
@@ -8,10 +9,7 @@ from sqlalchemy.orm import Session
 from app.auth.auth0 import Auth0Error, verify_jwt_token
 from app.db.models.user import User
 from app.db.session import get_db
-from app.utils.random_generators import random_name, random_email
-from random import randint
-
-
+from app.utils.random_generators import random_email, random_name
 
 security = HTTPBearer(auto_error=False)
 

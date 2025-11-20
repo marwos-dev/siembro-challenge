@@ -14,7 +14,8 @@ class User(Base):
     email = Column(String(100), unique=True, nullable=False)
     metadata_json = Column("metadata", JSON, nullable=True)
 
-    # Esto nos ayudara a hacer una busqueda mas rapido creando un indice sobre la columna auth0_sub
+    # Esto nos ayudara a hacer una busqueda mas rapido
+    # creando un indice sobre la columna auth0_sub
     auth0_sub = Column(String(100), unique=True, nullable=False, index=True)
 
     # Relaciones
