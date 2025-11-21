@@ -14,7 +14,7 @@ Diseñado para integrarse en una arquitectura moderna de microservicios (GCP, Ku
 - PostgreSQL 16  
 - Auth0 (JWT + JWKS RS256)  
 - Docker + docker-compose  
-- Alembic (migraciones)  
+- Alembic (migraciones) (Opcional No agregado) 
 - Pytest (suite completa de tests)  
 
 ---
