@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 
 from app.api import health_router, me_router, note_router
+from app.core.logging import configure_logging
+from app.core.settings import settings
+
+configure_logging(debug=settings.DEBUG)
 
 
 # Configuración de la app
